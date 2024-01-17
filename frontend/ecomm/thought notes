@@ -1,0 +1,24 @@
+some usfull extension:-
+----------------------
+es7+react/redux/react-native snippets
+auto close tag
+auto import tag
+dotenv
+html to jsx
+
+
+1) Starting with frontend create react app :- by running the command npx create-react-app ecomm then deleteed the logos and create some folders like pages, components, images.
+
+2) after that I write the hello world in app.js and remove all the other code of app.js app.css and index.css.
+
+3) then I installed some pakages like bootstrap, react bootstrap, react-router-dom, @fortawesome/fontawesome-svg-core, @fortawesome/free-solid-svg-icons, @fortawesome/react-fontawesome like in assignment 6 of of backend.
+
+4) here I used same code from assignment 6 like home page, what I made there i used the here too.
+
+5) Now then I made diffrent components and pages like home page login page signup page etc and same components homecover components, login components, signup components etc and give the name to function like LoginCom, SignupCom, AboutCom, etc respectivily.
+
+6) define its route by using router-dom in app.js, and gave href value in header so that by clicking we can go to different pages.
+
+7) I made UI for login and signuppage by help of bootstrap and recorded videos present in internshala recorded classes.
+
+8) then I made UI for about page, contact page by the help pf bootstrap.
