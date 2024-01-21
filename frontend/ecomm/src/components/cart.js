@@ -1,85 +1,57 @@
-import React, { useState, useEffect } from 'react';
+// CartPage.js
+
+import React from 'react';
+import { Container, Table, Button } from 'react-bootstrap';
 
 const CartPage = () => {
-  const [cart, setCart] = useState([]);
+  // Dummy data for the cart items
+  const cartItems = [
+    { id: 1, name: 'Product 1', price: 20, quantity: 2 },
+    { id: 2, name: 'Product 2', price: 30, quantity: 1 },
+    // Add more items as needed
+  ];
 
-  // Retrieve cart from local storage on component mount
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(savedCart);
-  }, []);
-
-  const updateCart = (newCart) => {
-    setCart(newCart);
-    localStorage.setItem('cart', JSON.stringify(newCart));
-  };
-
-  const handleRemoveItem = (itemId) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
-    updateCart(updatedCart);
-  };
-
-  const handleQuantityChange = (itemId, newQuantity) => {
-    const updatedCart = cart.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
-    );
-    updateCart(updatedCart);
-  };
-
-  const renderCartItems = () => {
-    return cart.map((cartItem) => (
-      <div className="product" key={cartItem.id}>
-        <div className="p-img">
-          <img src={cartItem.img} alt={cartItem.name} />
-        </div>
-        <div>
-          <div className="content">
-            <p className="title">{cartItem.name}</p>
-            <p className="price m-0">${cartItem.price}</p>
-            <div className="quantity-selector d-flex">
-              <button
-                className="qty qty-minus btn"
-                onClick={() =>
-                  handleQuantityChange(cartItem.id, cartItem.quantity - 1)
-                }
-              >
-                -
-              </button>
-              <input
-                type="text"
-                className="form-control mx-3"
-                readOnly
-                value={cartItem.quantity}
-              />
-              <button
-                className="qty qty-plus btn"
-                onClick={() =>
-                  handleQuantityChange(cartItem.id, cartItem.quantity + 1)
-                }
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="remove-wrapper">
-            <button
-              className="remove"
-              onClick={() => handleRemoveItem(cartItem.id)}
-            >
-              Remove from cart
-            </button>
-          </div>
-        </div>
-      </div>
-    ));
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
-    <div>
-      <div className="cart-wrapper">{renderCartItems()}</div>
+    <Container className="mt-4">
+      <h2 className='mb-5 font-design'>Your Shopping Cart <i class="fa-regular fa-heart"></i></h2>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>${item.price}</td>
+              <td>{item.quantity}</td>
+              <td>${item.price * item.quantity}</td>
+              <td>
+                <Button variant="danger" size="sm">
+                  Remove
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
-      {/* Other components and JSX for the rest of your cart page go here */}
-    </div>
+      <div className="text-right m-4">
+        <h4>Total: ${calculateTotal()}</h4>
+        <Button variant="success">Checkout</Button>
+      </div>
+    </Container>
   );
 };
 

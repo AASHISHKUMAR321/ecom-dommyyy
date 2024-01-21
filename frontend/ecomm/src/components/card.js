@@ -3,12 +3,14 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import First from '../images/pic5.jpg';
 import Third from '../images/pic3.jpg';
 import Forth from '../images/pic4.jpg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 function Cards() {
+
   const [lgShow, setLgShow] = useState(false);
   const [cart, setCart] = useState([]);
 
@@ -29,43 +31,46 @@ function Cards() {
       setCart([...cart, { ...item, quantity: 1 }]);
     }
   };
+  const [allproducts, setallproducts] = useState(null);
+  const getAllproducts = async () => {
+    try {
+      const GetProducts = await axios.get('http://localhost:4000/getAllproducts', allproducts);
+      console.log(GetProducts.data);
+      setallproducts(GetProducts.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+useEffect(()=>{
+  getAllproducts()
+}, [])
 
   return (
     <>
       <CardGroup className='container'>
-        <Card className='card' onClick={() => setLgShow(true)}>
-          <Card.Img className='card-img' variant="top" src={First} />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <Button className='btn btn-primary ' variant="primary" onClick={() => addToCart}> <FontAwesomeIcon className="cart" icon={faCartShopping} /> Add to cart</Button>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        <Card onClick={() => setLgShow(true)}>
-          <Card.Img className='card-img' variant="top" src={Third} />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <Button className='btn btn-primary ' variant="primary" onClick={() => addToCart}> <FontAwesomeIcon className="cart" icon={faCartShopping} /> Add to cart</Button>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        <Card onClick={() => setLgShow(true)}>
-          <Card.Img className='card-img' variant="top" src={Forth} />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <Button className='btn btn-primary ' variant="primary" onClick={() => addToCart}> <FontAwesomeIcon className="cart" icon={faCartShopping} /> Add to cart</Button>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
+        {
+          allproducts && (
+            allproducts.map((product) => {
+              return (
+                <Card  className='card' onClick={() => setLgShow(true)}>
+                  <Card.Img className='card-img' variant="top" src={First} />
+                  <Card.Body>
+                    <Card.Title>{product.name}</Card.Title>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <Card.Title>{product.price}</Card.Title>
+
+                    <Button className='btn btn-primary ' variant="primary" onClick={() => addToCart}> <FontAwesomeIcon className="cart" icon={faCartShopping} /> Add to cart</Button>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                  </Card.Footer>
+                </Card>
+              )
+
+            })
+          )
+        }
       </CardGroup>
       <Modal
         size="lg"
@@ -120,3 +125,10 @@ function Cards() {
 }
 
 export default Cards;
+
+
+
+// If the item is not in the cart, add it with quantity 1
+// If the item is not in the cart, add it with quantity 1
+// If the item is not in the cart, add it with quantity 1// If the item is not in the cart, add it with quantity 1
+// If the item is not in the cart, add it with quantity 1

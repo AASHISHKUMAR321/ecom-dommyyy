@@ -1,25 +1,29 @@
-const Product = require('../models/products_m');
-const Customer = require('../models/user_m');
-const Order = require('../models/order_m');
+const productModel = require('../models/products_m');
+const orderModel = require('../models/order_m');
+const CustModel = require('../models/user_m');
 
 // Add Product
 exports.addProduct = async (req, res) => {
   try {
     const { name, price, quantity, category, image, rating, comments } = req.body;
-
-    const newProduct = new Product({
-      name,
-      price,
-      quantity,
-      category,
-      image,
-      rating,
-      comments
-    });
-
-    await newProduct.save();
-    res.status(201).json({ message: 'Product added successfully' });
-  } catch (error) {
+    const productinDB = await productModel.findOne({name:name});
+    if (productinDB) {
+      return res.status(500).json({ error: "product with this name is already added" });
+    }else{
+      const newProduct = new Product({
+        name,
+        price,
+        quantity,
+        category,
+        image,
+        rating,
+        comments
+      });
+  
+      await newProduct.save();
+      res.status(201).json({ message: 'Product added successfully' });
+    } 
+    }catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
@@ -28,7 +32,7 @@ exports.addProduct = async (req, res) => {
 // Get All Products
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await productModel.find();
     res.status(200).json(products);
   } catch (error) {
     console.error(error);
@@ -42,7 +46,7 @@ exports.editProductById = async (req, res) => {
     const productId = req.params.productId;
     const updatedProduct = req.body;
 
-    const result = await Product.findByIdAndUpdate(productId, updatedProduct, { new: true });
+    const result = await productModel.findByIdAndUpdate(productId, updatedProduct, { new: true });
 
     if (!result) {
       return res.status(404).json({ message: 'Product not found' });
@@ -60,7 +64,7 @@ exports.deleteProductById = async (req, res) => {
   try {
     const productId = req.params.productId;
 
-    const result = await Product.findByIdAndDelete(productId);
+    const result = await productModel.findByIdAndDelete(productId);
 
     if (!result) {
       return res.status(404).json({ message: 'Product not found' });
@@ -76,7 +80,7 @@ exports.deleteProductById = async (req, res) => {
 // Get All Users
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await Customer.find();
+    const users = await CustModel.find();
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
@@ -87,7 +91,7 @@ exports.getAllUsers = async (req, res) => {
 // Get All Orders
 exports.getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await orderModel.find();
     res.status(200).json(orders);
   } catch (error) {
     console.error(error);

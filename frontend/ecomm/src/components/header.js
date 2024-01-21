@@ -50,7 +50,7 @@ function Header() {
         <Container >
           <Navbar.Brand href="/product">e-com</Navbar.Brand>
           <Nav >
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown href="/product" title="products" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action2">Shoes</NavDropdown.Item>
               <NavDropdown.Item href="#action3">Dresses</NavDropdown.Item>
@@ -61,7 +61,7 @@ function Header() {
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Sign-up</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
+            <Nav.Link href="/profile">profile </Nav.Link>
 
             {/* font awesome icon for cart */}
             <Nav.Link href="/cart"><FontAwesomeIcon className="cart" icon={faCartShopping} /></Nav.Link>

@@ -4,11 +4,11 @@ import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import Product from './pages/prroduct';
 import Cart from './pages/cart';
-import Contact from './pages/contact';
 import About from './pages/about';
 import{BrowserRouter as Router, Routes,Route} from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
+import Profile from './pages/profile_page';
 
 
 function App() {
@@ -23,8 +23,9 @@ function App() {
         <Route exact path ="/signup" element={<SignupPage/>}></Route>
         <Route exact path ="/product" element={<Product/>}></Route>
         <Route exact path ="/cart" element={<Cart/>}></Route>
-        <Route exact path ="/contact" element={<Contact/>}></Route>
         <Route exact path ="/about" element={<About/>}></Route>
+        <Route exact path ="/profile" element={<Profile/>}></Route>
+
       </Routes>
     </Router>
     <Footer/>

@@ -12,7 +12,7 @@ function Homecover() {
         <Card.Text>
           With supporting text below as a natural lead-in to additional content.
         </Card.Text>
-        <Button variant="primary"> Go to All products</Button>
+        <a href='/product'><Button variant="primary"> Go to All products</Button></a>
       </Card.Body>
       <Card.Footer className="text-muted">2 days ago</Card.Footer>
     </Card>

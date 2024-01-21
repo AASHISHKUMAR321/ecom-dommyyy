@@ -1,5 +1,5 @@
 const mongoose =require('mongoose');
-const userSchema = new mongoose.Schema({
+const CustSchema = new mongoose.Schema({
   name:{
     type:String,
     require:true
@@ -27,5 +27,5 @@ const userSchema = new mongoose.Schema({
     default: false
   }
 });
-const userModel = mongoose.model("UserModel", userSchema)
-module.exports=userModel;
+const CustModel = mongoose.model("CustModel", CustSchema)
+module.exports=CustModel;
