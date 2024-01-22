@@ -5,12 +5,6 @@ const Product = () => {
   return (
     <>
     <ProductCom/>
-    <ProductCom/>
-    <ProductCom/>
-    <ProductCom/>
-    <ProductCom/>
-
-
     </>
   )
 }

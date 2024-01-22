@@ -1,27 +1,39 @@
-some usfull extension:-
-----------------------
+some usfull extension i Dowloaded while doing this project:-
+-----------------------------------------------------------
 es7+react/redux/react-native snippets
 auto close tag
 auto import tag
 dotenv
 html to jsx
 
-
-
-
-
-===================================================================================================================================================
-===================================================================================================================================================
+====================================================================================================================
+====================================================================================================================
 
 B A C K E N D :-
 --------------
 Here first, I make a directory name "backend" then  server.js with different folder likes:- 
 
-1) controllers:- admin, user
-2) models:- order, products, custumer
-3) middleware:- auth for login checking... Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
+1) controllers:- 
+--------------
+admin, 
+user,
+2) models:- 
+---------
+order, 
+products, 
+custumer,
+cart,
+category, 
+3) middleware:-
+--------------
+ auth for login checking... Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
 
-4) routes:- user, admin 
+4) routes:- 
+---------
+user, 
+admin, 
+
+*********************************************************************************
 
 
 then, I install some packages:-
@@ -40,17 +52,13 @@ then, I install some packages:-
 
 
 
-
-
-
-***************************************************************************************************************************************************
-***************************************************************************************************************************************************
-***************************************************************************************************************************************************
+====================================================================================================================
+====================================================================================================================
+====================================================================================================================
+====================================================================================================================
 
 F R O N T E N D :-
 ----------------
-
-
 
 1) Starting with frontend create react app :- by running the command npx create-react-app ecomm then deleteed the logos and create some folders like pages, components, images.
 
@@ -76,3 +84,14 @@ F R O N T E N D :-
 7) I made UI for login and signuppage by help of bootstrap and recorded videos present in internshala recorded classes.
 
 8) then I made UI for about page, contact page by the help pf bootstrap.
+
+******************************************************************************
+
+pages discription:-
+------------------
+1) login page:-
+2) register page:-
+3) profile page:-
+4) product page:-
+5) cart page:-
+6) rest:- there I just disign the frame not put any functionality and integration part  

@@ -10,7 +10,7 @@ exports.addProduct = async (req, res) => {
     if (productinDB) {
       return res.status(500).json({ error: "product with this name is already added" });
     }else{
-      const newProduct = new Product({
+      const newProduct = new productModel({
         name,
         price,
         quantity,

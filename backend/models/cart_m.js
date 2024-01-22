@@ -1,7 +1,4 @@
-// cartModel.js
-
 const mongoose = require('mongoose');
-
 const cartSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,12 +19,8 @@ const cartSchema = new mongoose.Schema({
       },
     },
   ],
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  
+}, {timestamps:true});
 
-const Cart = mongoose.model('Cart', cartSchema);
-
+const Cart = mongoose.model('CartModel', cartSchema);
 module.exports = Cart;
