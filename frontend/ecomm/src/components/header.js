@@ -12,6 +12,7 @@ import React from 'react';
 // imported react-fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import NavLink from 'react-bootstrap/esm/NavLink';
 
 function Header() {
   return (
@@ -61,7 +62,11 @@ function Header() {
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Sign-up</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/profile">profile </Nav.Link>
+            <NavLink to='/profile' ><NavDropdown title="profile" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action2">User</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">Admin</NavDropdown.Item>
+            </NavDropdown></NavLink>
+
 
             {/* font awesome icon for cart */}
             <Nav.Link href="/cart"><FontAwesomeIcon className="cart" icon={faCartShopping} /></Nav.Link>

@@ -18,10 +18,38 @@ function Cards() {
     rating: 0,
     comments: [],
   });
+  const [file, setFile] = useState(null);
+
+  const config={
+    headers : {
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer '+ localStorage.getItem('token')
+    }
+  }
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  // Function to handle product image upload
+  const handleImageUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const resp = await axios.post('http://localhost:4000/uploadFile', formData, config);
+      const imageFileName = resp.data;
+
+      // Update the product image in the state
+      setalladdproducts({ ...alladdproducts, image: imageFileName });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const addproducts = async () => {
     try {
-      const resp = await axios.post('http://localhost:4000/addProduct', alladdproducts);
+      const resp = await axios.post('http://localhost:4000/addProduct', alladdproducts, config);
       console.log(resp.data)
       getAllproducts();
       setalladdproducts({
@@ -84,7 +112,10 @@ function Cards() {
           <label>Quantity:</label>
           <input type='number' value={alladdproducts.quantity} onChange={(e) => setalladdproducts({ ...alladdproducts, quantity: e.target.value })} />
 
-          <Button onClick={addproducts}>Add Product</Button>
+          <input type='file' onChange={handleFileChange} />
+
+          <Button onClick={() => { addproducts(); handleImageUpload(); }}>Add Product</Button>
+
         </form>
       </div>
       <CardGroup className='container'>
